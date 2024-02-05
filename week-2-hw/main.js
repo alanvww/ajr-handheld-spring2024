@@ -16,6 +16,11 @@ document.getElementById('enableGyroscope').addEventListener('click', () => {
 window.addEventListener('DOMContentLoaded', () => {
 	video = document.getElementById('background-video');
 
+	// Add click event listener to toggle invert filter
+	document.getElementById('app').addEventListener('click', () => {
+		document.getElementById('app').classList.toggle('inverted');
+	});
+
 	video.volume = 0;
 
 	video.muted = false;

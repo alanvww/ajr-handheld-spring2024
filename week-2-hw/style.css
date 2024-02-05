@@ -33,6 +33,10 @@ html {
 	filter: blur(var(--blur-value));
 }
 
+.inverted {
+	filter: invert(100%);
+}
+
 #slider-container {
 	position: absolute;
 	width: 100%;
