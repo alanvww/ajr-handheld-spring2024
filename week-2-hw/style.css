@@ -1,0 +1,50 @@
+body,
+html {
+	margin: 0;
+	padding: 0;
+	height: 100%;
+	overflow: hidden;
+}
+
+#app {
+	position: relative;
+	height: 100%;
+}
+
+:root {
+	--blur-value: 5px; /* default blur value */
+}
+
+#background-video {
+	position: absolute;
+	/* Rotate the video */
+	transform: rotate(-90deg);
+	transform-origin: top left;
+
+	top: 100%;
+
+	/* Adjust the position and size to fit the screen */
+	width: 100vh;
+	height: 100vw;
+	object-fit: cover;
+	z-index: -1;
+
+	/* apply blur from css variable */
+	filter: blur(var(--blur-value));
+}
+
+#slider-container {
+	position: absolute;
+	width: 100%;
+	bottom: 0;
+	display: flex;
+	justify-content: center;
+}
+
+#slider {
+	writing-mode: bt-lr; /* IE */
+	-webkit-appearance: slider-vertical; /* WebKit */
+	width: 8px;
+	height: 175px;
+	margin: 20px 0;
+}
