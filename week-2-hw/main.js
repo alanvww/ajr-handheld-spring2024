@@ -5,9 +5,6 @@ import './style.css';
 let video;
 let slider;
 
-// Get blur value from CSS variable
-const blurValue = getComputedStyle(document.documentElement)['--blur-value'];
-
 // Call this function when the user interacts with the page, like a button click
 document.getElementById('enableGyroscope').addEventListener('click', () => {
 	setupGyroscope();
@@ -15,13 +12,19 @@ document.getElementById('enableGyroscope').addEventListener('click', () => {
 
 window.addEventListener('DOMContentLoaded', () => {
 	video = document.getElementById('background-video');
+	slider = document.getElementById('slider');
 
-	// Add click event listener to toggle invert filter
-	document.getElementById('app').addEventListener('click', () => {
-		document.getElementById('app').classList.toggle('inverted');
-	});
+	/* Remove inverted
+  // Add click event listener to toggle invert filter
+  document.getElementById('app').addEventListener('click', () => {
+    document.getElementById('app').classList.toggle('inverted');
+  });
+  */
 
 	video.volume = 0;
+	slider.value = 0;
+
+	video.style.filter = `blur(10px)`;
 
 	video.muted = false;
 	video.play();
@@ -33,13 +36,10 @@ document.getElementById('slider').addEventListener('input', (event) => {
 	video.muted = false;
 	video.play();
 
-	// Update blur value in CSS variable
-	document.documentElement.style.setProperty(
-		'--blur-value',
-		(1 - volume) * parseFloat(blurValue)
-	);
-});
-document.getElementById('slider').addEventListener('change', () => {
+	// Calculate blur based on volume
+	let blurValue = (1 - volume) * 10;
+	video.style.filter = `blur(${blurValue}px)`;
+
 	let volumeInfo = document.getElementById('volume');
 	volumeInfo.innerHTML =
 		'Volume: ' + document.getElementById('slider').value + '%';
@@ -57,6 +57,8 @@ function handleOrientation(event) {
 	// Map beta (0 to 90) to a volume value (0.0 to 1.0)
 	let volume = beta / 90;
 	video.volume = volume;
+
+	console.log(volume);
 
 	// Adjust video play state
 	video.muted = false;

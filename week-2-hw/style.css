@@ -11,10 +11,6 @@ html {
 	height: 100%;
 }
 
-:root {
-	--blur-value: 5px; /* default blur value */
-}
-
 #background-video {
 	position: absolute;
 	/* Rotate the video */
@@ -28,14 +24,15 @@ html {
 	height: 100vw;
 	object-fit: cover;
 	z-index: -1;
-
-	/* apply blur from css variable */
-	filter: blur(var(--blur-value));
 }
+
+/* Remove inverted
 
 .inverted {
-	filter: invert(100%);
+  filter: invert(100%);
 }
+
+*/
 
 #slider-container {
 	position: absolute;
